@@ -1,0 +1,168 @@
+.modal {
+  border-radius: 6px;
+  font-family: "Rubik", sans-serif;
+
+  width: 360px;
+  height: fit-content !important;
+  padding: 16px 48px;
+
+  box-shadow: 0 4px 4px 2px rgba(0, 0, 0, .08);
+  cursor: default;
+
+  h2 {
+    margin: 10px 0;
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .filter {
+    margin-top: 24px;
+    display: flex;
+
+    button {
+      width: 30%;
+      margin: 0 8px;
+      padding: 6px 0;
+      border: 0;
+      border-radius: 6px;
+      font-family: "Roboto";
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: #F5F5F5;
+      }
+
+      &:not(.selected):active {
+        background-color: rgba(black, 7%);
+      }
+
+      &.selected {
+        background-color: #F5F5F5;
+      }
+
+      &::after {
+        content: attr(data-count);
+        //background-color: #EFF3FF;
+        font-family: "Roboto";
+        color: #1F3B4D;
+        font-weight: 500;
+        margin-left: 8px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  input {
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    padding: 6px 16px;
+    font-size: 16px;
+    margin: 0 8px;
+    margin-top: 6px;
+    border: 0;
+    background-color: #F4F4F4;
+    font-family: "Rubik", sans-serif;
+    outline: 0;
+  }
+
+  .users {
+    margin-top: 8px;
+    height: 276px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, .2);
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      padding: 10px 8px;
+
+      &.updating {
+        cursor: wait;
+      }
+
+      &:hover {
+        background-color: rgba(black, 5%);
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+        margin-right: 8px;
+      }
+
+      .details {
+        flex-grow: 1;
+
+        small {
+          color: #767676;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+
+      button {
+        visibility: hidden;
+        width: 24px;
+        aspect-ratio: 1;
+        border: 0;
+        margin-right: 8px;
+        background-color: transparent;
+        background-image: url(../../../public/remove.png);
+        background-size: 16px;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        &:not(&:disabled) {
+          &:hover {
+            background-color: rgba(black, 5%);
+          }
+
+          &:active {
+            background-color: rgba(black, 8%);
+          }
+        }
+
+        &:disabled {
+          cursor: wait;
+        }
+      }
+
+      &:hover button {
+        visibility: visible;
+      }
+    }
+  }
+
+  .invite {
+    border: 0;
+    color: #1F3B4D;
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 6px 0;
+    margin-bottom: 2px;
+    padding: 6px 10px;
+    padding-left: 36px;
+    background-image: url(../../../public/add-user.png);
+    background-size: 22px;
+    background-position: 8px center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      background-color: #F4F4F4;
+    }
+  }
+}

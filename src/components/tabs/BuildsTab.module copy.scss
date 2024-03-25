@@ -1,0 +1,459 @@
+@import '../../styles/variables.scss';
+
+.builds {
+
+    margin-top: 24px;
+
+    .actionBar {
+        display: flex;
+    }
+
+    .filters {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-start;
+
+        .filter {
+            display: flex;
+            height: 20px;
+            // border: 1px solid #D9D9D9;
+            align-items: center;
+            border-radius: 4px;
+            font-family: "Rubik", sans-serif;
+
+            padding: 4px 0;
+            margin-right: 20px;
+            cursor: default;
+            user-select: none;
+
+            p {
+                margin: 0;
+                color: #4a4a4a;
+                padding-left: 16px;
+            }
+
+            .filterLabel {
+                position: relative;
+
+                &::before {
+                    content: ' ';
+                    position: absolute;
+                    transform: translate(-18px, 1px);
+                    width: 16px;
+                    height: 16px;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+
+                &[role="channel-select"]::before {
+                    background-image: url(../../../public/pipeline.png);
+                    filter: opacity(0.6);
+                }
+
+                &[role="version-select"]::before {
+                    background-image: url(../../../public/branch.png);
+                    filter: opacity(0.6);
+                    transform: translate(-18px, 2px);
+                }
+            }
+
+            .filterSelect {
+                font-family: "Rubik", sans-serif;
+                color: rgba(0, 0, 0, .9);
+                // background-color: rgba(0, 0, 0, .03);
+                // border: 1px solid #D9D9D9;
+                border-radius: 4px;
+
+                padding: 3px 8px;
+                font-size: 16px;
+                margin-left: 4px;
+                margin-right: 0px;
+
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .05);
+                }
+
+                &:active {
+                    background-color: rgba(0, 0, 0, .09);
+                }
+
+            }
+
+            .filterSelectMenu {
+                font-family: "Rubik", sans-serif;
+                font-size: 16px;
+                margin-right: 4px;
+                background-color: white;
+                border: 1px solid rgba(0, 0, 0, .2);
+                border-radius: 4px;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .3);
+                margin-top: 4px;
+                padding: 4px 0;
+
+                position: absolute;
+                z-index: 5;
+
+                transform: translateX(-32px);
+
+                div[role="option"] {
+                    padding: 4px 24px;
+                    padding-left: 32px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, .05);
+                    }
+                }
+            }
+        }
+    }
+
+    .createBuild {
+        border-radius: 4px;
+        border: 0;
+        padding: 4px 16px;
+        margin-right: 6px;
+        margin-bottom: 8px;
+        font-family: 'Rubik';
+        font-size: 16px;
+        cursor: pointer;
+
+        border: 1px solid rgba($primary-focus-color-light, .4);
+        // background-color: $primary-focus-bkg-color-light;
+        background-color: white;
+        color: $primary-focus-color-light;
+        font-weight: 500;
+
+        &:hover {
+            background-color: rgba($primary-focus-bkg-color-light, .3);
+        }
+
+        &:active {
+            background-color: rgba($primary-focus-bkg-color-light, .8);
+        }
+    }
+
+    hr {
+        margin-top: 16px;
+        border-width: 0 0 2px 0;
+        border-color: rgba(0, 0, 0, .1);
+    }
+
+    .build {
+
+        // margin: 12px 0;
+        p {
+            margin: 0
+        }
+
+        padding: 14px 24px;
+        background-color: rgba(0, 0, 0, .03);
+
+        position: relative;
+        // max-width: 700px;
+
+        font-family: 'Rubik',
+        sans-serif;
+        cursor: default;
+
+        margin: 6px 0;
+        margin-bottom: 16px;
+        border-radius: 6px;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            // border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .header {
+            display: flex;
+            font-size: 18px;
+
+            span {
+                padding: 0px 4px;
+                // width: 36px;
+                margin-right: 0px;
+                font-size: 16px;
+                font-weight: 500;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                height: 16px;
+                text-align: center;
+            }
+        }
+
+        .labels {
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+
+            span {
+                font-weight: 400;
+                // font-size: 14px;
+                font-size: 15px;
+                padding: 1px 8px;
+                padding-bottom: 3px;
+                text-align: right;
+
+                margin-left: 24px;
+                margin-right: 2px;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    background-size: cover;
+                    transform: translate(-19px, 1px);
+                    filter: opacity(0.7);
+                }
+            }
+
+            .release::before {
+                background-image: url(../../../public/pipeline.png);
+            }
+
+            .version::before {
+                background-image: url(../../../public/branch.png);
+            }
+
+            .more {
+                width: 22px;
+                height: 22px;
+                border: 0;
+                background-color: transparent;
+                background-image: url(../../../public/more.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                transform: rotate(90deg);
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .05);
+                }
+
+                &:active {
+                    background-color: rgba(0, 0, 0, .08);
+                }
+            }
+
+            .version {
+            }
+        }
+
+        .buildNumber {
+            // background-color: rgba(0, 0, 0, .08);
+            padding: 0 !important;
+
+            &::before {
+                color: rgba(black, 0.7);
+            }
+        }
+
+        .authorDate {
+            margin-top: 2px;
+            font-size: 13px;
+            color: rgb(80, 80, 80);
+            display: flex;
+            align-items: center;
+
+            .avatar {
+                width: 16px;
+                border-radius: 50%;
+                aspect-ratio: 1;
+                margin-right: 3px;
+                pointer-events: none;
+            }
+        }
+
+        .section {
+            .sectionTitle {
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+
+        h3 {
+            font-weight: normal;
+            margin-top: 32px;
+            font-size: 16px;
+            margin-bottom: 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, .2);
+        }
+
+        ul {
+            margin: 2px 0;
+            margin-top: 20px;
+            // padding-left: 16px;
+            padding-left: 18px;
+            // list-style-type: '-  ';
+
+            &:empty {
+                margin: 0;
+            }
+
+            li {
+                margin-bottom: 2px;
+                font-size: 16px;
+
+                &:not(:has(.issueReference)) {
+                    padding: 3px 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .issueReference {
+            // border: 1px solid rgba(0, 0, 0, .2);
+            border: 0;
+            text-align: left;
+            padding: 3px 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: "Rubik", sans-serif;
+            // font-weight: 500;
+            user-select: none;
+            transform: translateX(-6px);
+            margin: 0;
+            background-color: transparent;
+
+            &::after {
+                width: 18px;
+                height: 18px;
+                display: inline-block;
+                vertical-align: bottom;
+                content: ' ';
+                background-image: url(../../../public/external-link.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin-left: 4px;
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .05);
+            }
+        }
+
+        .actions {
+            margin: 0 4px;
+            margin-right: 12px;
+
+            a {
+                display: block;
+                width: 32px;
+                aspect-ratio: 1;
+                border: 0;
+                background: none;
+                background-image: url(../../../public/download.png);
+                background-size: 60%;
+                background-position: 7px center;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                border-radius: 8px;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .08);
+                }
+            }
+        }
+
+        &:has(ul:empty) {
+            button {}
+        }
+
+        hr {
+            width: 628px;
+            transform: translateX(-28px);
+            border-color: rgba(0, 0, 0, .08);
+            border-width: 1px 0 0 0;
+            margin: 12px 0;
+        }
+
+        table {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            // border: 1px solid rgba(0, 0, 0, .1);
+            padding: 0 6px;
+            width: 656px;
+            transform: translateX(-16px);
+            font-size: 15px;
+            // background-color: white;
+            // background-color: rgba(0, 0, 0, .02);
+            // background-color: white;
+            border-radius: 4px;
+
+            tr {
+                &:hover {
+                    background-color: rgba(0, 0, 0, .05);
+                }
+            }
+
+            tr:not(:last-child) {
+                box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .05);
+            }
+
+            td {
+                width: 240px;
+                max-width: 240px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 5px 8px;
+
+                a {
+                    &:not(:hover) {
+                        text-decoration: none;
+                    }
+
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: rgb(44, 69, 137);
+                }
+
+                &:first-child {
+                    padding-left: 6px;
+
+                    &::before {
+                        content: ' ';
+                        display: inline-block;
+                        width: 18px;
+                        height: 18px;
+                        margin-right: 4px;
+                        background-image: url(../../../public/download.png);
+                        background-size: 12px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        vertical-align: bottom;
+                        filter: contrast(0.5);
+                    }
+                }
+
+                &:nth-child(2) {
+                    width: 24px;
+                    color: rgba(0, 0, 0, .7);
+                }
+            }
+        }
+
+    }
+
+}
+
+[data-theme='dark'] .build {
+    background-color: rgba(white, 0.03);
+}

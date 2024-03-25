@@ -1,0 +1,74 @@
+.releases {
+    margin-top: 24px;
+    cursor: default;
+
+    hr {
+        margin: 64px 0 32px 0;
+        background: none;
+        border-color: rgba(0, 0, 0, .1);
+    }
+
+    .release {
+
+        .header {
+
+            font-size: 20px;
+
+            .version {
+                padding: 6px 12px;
+                font-size: 16px;
+                background-color: #F0F0F0;
+                margin-right: 8px;
+                // border-radius: 8px;
+            }
+
+            .title {
+                font-weight: bold;
+                line-height: 28px;
+                vertical-align: middle;
+            }
+
+            .releaseDate {
+                font-size: 14px;
+                color: #484848;
+            }
+
+        }
+
+        .section {
+
+            margin-top: 32px;
+
+            .title {
+                font-weight: bold;
+            }
+
+        }
+
+        .changelog {
+
+            li {
+                margin: 6px 0;
+            }
+
+            .issue {
+                background-color: #F1F1F1;
+                padding: 2px 8px;
+                border-radius: 4px;
+                user-select: none;
+
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .1);
+                }
+                &:active {
+                    background-color: rgba(0, 0, 0, .15);
+                }
+            }
+
+        }
+
+    }
+
+}

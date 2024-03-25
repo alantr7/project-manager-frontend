@@ -1,0 +1,154 @@
+@import '../../styles/variables.scss';
+
+.accountSection {
+    margin-right: 48px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+
+    button {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        margin-left: 10px !important;
+        border-radius: 50%;
+        // border: 1px solid rgba(0, 0, 0, .2);
+        border: 0;
+        cursor: pointer;
+        background: transparent;
+        background-size: 22px;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .03);
+        }
+
+        &:active {
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+        &.searchButton {
+            background-image: url('../../../public/search.png');
+            background-color: rgba(0, 0, 0, .05);
+            background-position: calc(100% - 16px) center;
+            background-size: 16px;
+            // transform: scaleX(-100%);
+            padding-left: 14px;
+            padding-right: 96px;
+            width: unset;
+            border-radius: 6px;
+            margin-right: 6px;
+            font-size: 16px;
+            font-family: "Rubik", sans-serif;
+            cursor: text;
+            color: rgba(black, 0.5);
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .08);
+            }
+        }
+
+        &.notificationsButton {
+            background-image: url('../../../public/notifications-bell.png');
+
+            &:not([notif-count="0"])::after {
+                position: absolute;
+                top: -4px;
+                right: 0;
+                width: 20px;
+                aspect-ratio: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                content: attr(notif-count);
+                color: white;
+                font-size: 12px;
+                border-radius: 50%;
+                // padding: 4px;
+                // background-color: rgb(255, 113, 113);
+                background-color: $primary-focus-bkg-color-light;
+                color: $primary-focus-color-light;
+                border: 1px solid rgba($primary-focus-color-light, 0.3);
+                font-weight: bold;
+                font-family: 'Poppins';
+            }
+        }
+
+        &.themeSwitchButton {
+            background-image: url('../../../public/theme-dark.png');
+            transform: rotate(40deg);
+        }
+    }
+}
+
+.savingIndicator {
+    border-radius: 24px;
+    padding: 5px 18px;
+    ;
+    // border: 1px solid rgba(0, 0, 0, .25);
+    // box-shadow: 0 0 1px 0 black;
+    color: rgba(0, 0, 0, .8);
+    font-family: 'Rubik', sans-serif;
+    user-select: none;
+
+    .saving {
+        margin: 0;
+        position: relative;
+        color: #0038A6;
+
+        &::before {
+            position: absolute;
+            display: block;
+            content: ' ';
+            top: calc(50% - 2px);
+            left: -12px;
+            width: 5px;
+            height: 5px;
+            background-color: #0038A6;
+            border-radius: 50%;
+
+            animation: blink 1.2s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@media (max-width: 1660px) {
+    .searchButton {
+        padding-right: 0px !important;
+        padding-left: 0 !important;
+        color: transparent !important;
+    }
+}
+
+
+[data-theme='dark'] {
+
+    .account {
+        background-color: $bkg-color-dark;
+        border-color: rgb(80, 80, 80);
+        span {
+            color: rgb(180, 180, 180);
+        }
+    }
+
+    .searchButton {
+        background-color: rgba(0, 0, 0, .2) !important;
+        color: rgb(160, 160, 160) !important;
+    }
+
+}

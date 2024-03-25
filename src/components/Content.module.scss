@@ -1,0 +1,296 @@
+@import '../styles/variables.scss';
+
+.header {
+    top: 0;
+    left: -32px;
+    // width: calc(100% + 64px);
+    width: calc(50vw + 556px);
+    height: 132px;
+    position: sticky;
+    display: block;
+    transform: translateX(-64px);
+    // transition: padding-top .1s box-shadow .1s;
+    z-index: 2;
+
+    .contentBlock {
+        padding-top: 24px;
+        padding-left: 64px;
+        // width: calc(100% - 384px);
+        // box-shadow: 0 1px 4px 0 rgba(black, 0.2);
+        background-color: $project-header-bkg-light;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+        // left: max(0px, calc(50% - 565px));
+        z-index: 2;
+        font-family: 'Rubik';
+
+
+        h3 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 500;
+            // transition: font-size .1s;
+            display: flex;
+            align-items: center;
+        }
+
+        h5 {
+            margin: 8px 0;
+            font-weight: normal;
+            color: rgb(40, 40, 40);
+        }
+
+        .version {
+            background-color: rgba(0, 0, 0, .08);
+            margin-left: 10px;
+            font-size: 16px;
+            padding: 4px 6px;
+            border-radius: 6px;
+            cursor: default;
+        }
+    }
+}
+
+.fixed {
+    .contentBlock {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1);
+        padding-top: 24px;
+    }
+
+    h3 {
+        font-size: 30px !important;
+    }
+
+    h5 {
+        display: none;
+    }
+
+    .tabButton {
+        margin: 8px 0;
+        margin-right: 8px;
+        margin-bottom: 16px
+    }
+}
+
+.projectName {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        border-radius: 3px;
+    }
+
+    .separator {
+        position: absolute;
+        right: 0;
+        top: 3px;
+        width: 18px;
+        height: 18px;
+        transform: rotate(-90deg);
+        opacity: 0.7;
+    }
+}
+
+.tabButton {
+    position: relative;
+    // background-color: rgba(0, 0, 0, .05);
+    background-color: white;
+    color: rgba(0, 0, 0, .7);
+    // color: $tab-button-text;
+    border: 0;
+    // padding: 8px 16px;
+    padding: 3px 12px !important;
+    padding-bottom: 4px !important;
+    padding-right: 6px !important;
+    min-width: 90px;
+    margin: 2px 0 !important;
+    margin-right: 4px !important;
+    // border-radius: 8px;
+    font-size: 17px;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    transition: padding .1s;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: 'Roboto', sans-serif;
+
+    &::before {
+        display: inline-block;
+        width: 18px;
+        height: 28px;
+        background-size: 16px;
+        background-position: center 5px;
+        background-repeat: no-repeat;
+        margin-right: 6px;
+        content: '';
+        filter: grayscale(100%);
+    }
+
+    &.releases::before {
+        background-image: url(../../public/icon-releases.png);
+    }
+
+    &.issues::before {
+        background-image: url(../../public/icon-issues.png);
+        background-position: center 6px;
+        background-size: 17px;
+    }
+    &.milestones::before {
+        background-image: url(../../public/icon-milestone.png);
+    }
+
+    &.builds::before {
+        background-image: url(../../public/icon-builds.png);
+    }
+
+    &.source::before {
+        background-image: url(../../public/icon-sources.png);
+        background-size: 24px;
+        background-position: center 3px;
+    }
+
+    &.settings {
+        padding: 0;
+        min-width: 0;
+        width: 40px;
+        height: 30px;
+        background-position: center;
+        background-image: url(../../public/settings.png);
+        background-size: 16px;
+        background-repeat: no-repeat;
+    }
+
+    &:hover {
+        // background-color: rgba(0, 0, 0, .09);
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    &.active {
+        color: $primary-focus-color-light;
+        background-color: #EFF3FF;
+        font-weight: 500;
+
+        &::before {
+            filter: grayscale(0);
+        }
+    }
+
+    .counter {
+        // color: rgba(0, 0, 0, .6);
+        font-size: 12px;
+        font-weight: normal;
+        margin: 0 8px;
+        padding-top: 2px;
+    }
+
+    &:nth-child(n + 4) .counter {
+        display: none;
+    }
+}
+
+.projectLayout {
+    display: flex;
+    flex-grow: 1;
+
+    .projectTab {
+        flex-grow: 1;
+        margin-right: 72px;
+    }
+}
+
+[data-theme='dark'] {
+    .header .contentBlock {
+        background-color: $bkg-color-dark;
+        border-bottom-color: $secondary-border-color-dark;
+
+        h5 {
+            color: $text-color-dark;
+        }
+    }
+
+    .detailsPanel {
+        background-color: $bkg-color-dark !important;
+    }
+
+    .tabButton {
+        color: $tab-button-text-dark;
+        background-color: $tab-button-bkg-dark;
+
+        &:not(.active)::before {
+            filter: invert(0.5) grayscale(1);
+        }
+
+        &.active {
+            background-color: $primary-focus-bkg-color-dark;
+            color: $primary-focus-color-dark;
+        }
+    }
+}
+
+@media (max-width: 1660px) {
+    .header {
+        left: 0 !important;
+        // width: calc(100% - 64px) !important;
+        width: calc(100vw - 281px);
+
+        .contentBlock {
+            padding-left: 24px;
+            h3 {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .page {
+
+    }
+
+    .projectLayout {
+        margin: 0 auto !important;
+    }
+    .projectTab {
+        padding-right: 0 !important;
+    }
+
+    .detailsPanel {
+        display: none !important;
+    }
+}
+
+[layout='full-width'] {
+    .header {
+        width: 100%;
+        height: 136px;
+        transform: unset;
+    }
+    .detailsPanel {
+        display: unset;
+    }
+    .projectLayout {
+        margin-left: 64px;
+        
+        .projectTab {
+            height: calc(100vh - 136px);
+            margin-right: 0;
+            padding-right: 64px;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, .2);
+            }
+        }
+    }
+}

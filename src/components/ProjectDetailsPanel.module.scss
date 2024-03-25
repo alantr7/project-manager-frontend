@@ -1,0 +1,200 @@
+@import '../../src/styles/variables.scss';
+
+.detailsPanel {
+    display: none;
+    width: 340px;
+    border-left: 1px solid $secondary-border-color-light;
+    background-color: white;
+}
+
+.detailsTabs {
+    border-bottom: 1px solid $primary-border-color-light;
+    display: flex;
+    justify-content: center;
+
+    button {
+        font-family: 'Rubik', sans-serif;
+        padding: 6px 14px;
+        padding-bottom: 8px;
+        font-size: 15px;
+        margin: 2px auto;
+        transform: translateY(1.5px);
+        width: 40%;
+        border: 0;
+        background: none;
+        // border-right: 1px solid $primary-border-color-light;
+        color: rgba(black, 0.7);
+
+        &.selected {
+            font-weight: 500;
+            color: $primary-focus-color-light;
+
+            box-shadow: 0 2px 0 $primary-focus-color-light;
+        }
+
+        &:not(.selected):hover {
+            background-color: rgba(0, 0, 0, .03);
+        }
+
+        &:not(.selected):active {
+            background-color: rgba(0, 0, 0, .05);
+        }
+    }
+}
+
+.tabContent {
+    padding: 16px;
+    flex-grow: 1;
+    margin-top: 4px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.discussionTab {
+    display: flex;
+    height: 100%;
+    max-height: calc(100vh - 137px - 72px);
+    flex-direction: column;
+
+    hr {
+        border-color: rgba(0, 0, 0, .1);
+    }
+
+    .discussion {
+        flex-grow: 1;
+        font-family: 'Rubik', sans-serif;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .1);
+        }
+
+        &:hover {
+            &::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, .7);
+            }
+        }
+
+        article {
+            display: flex;
+
+            &:has(.me) {
+                // justify-content: flex-end;
+            }
+        }
+
+        .bubble {
+            display: inline-flex;
+            // background-color: rgba(0, 0, 0, .05);
+            padding: 6px 16px;
+            padding-left: 10px;
+            border-radius: 6px;
+            margin: 4px 0;
+            cursor: default;
+
+            .avatar {
+                width: 28px;
+                height: 28px;
+                margin-top: 4px;
+                margin-right: 6px;
+                background-color: cornflowerblue;
+                border-radius: 50%;
+                background-size: cover;
+            }
+
+            .author {
+                font-weight: 500;
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .03);
+            }
+
+            &:active {
+                background-color: rgba(0, 0, 0, .05);
+            }
+
+            &.me {/*
+                text-align: right;
+                color: black;
+                // background-color: rgba(cornflowerblue, 0.4);
+                // background-color: rgba($primary-focus-bkg-color-light, 0.4);
+
+                padding-left: 16px;
+                padding-right: 10px;
+
+                .avatar {
+                    margin-right: 0;
+                    margin-left: 6px;
+                }*/
+            }
+        }
+    }
+
+    .inputBox {
+        button {
+            display: block;
+            margin: 4px 0 0 auto;
+
+            padding: 4px 12px;
+            border: 2px solid $primary-focus-color-light;
+            // background-color: $primary-focus-bkg-color-light;
+            color: $primary-focus-color-light;
+            font-weight: 500;
+            font-size: 15px;
+            font-family: "Rubik";
+        }
+    }
+
+    textarea {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background-color: rgba(0, 0, 0, .05);
+        font-size: 17px;
+        font-family: 'Rubik', sans-serif;
+        padding: 6px 10px;
+        box-sizing: border-box;
+        border-radius: 4px;
+
+        &:focus {
+        }
+    }
+}
+
+[data-theme='dark'] .detailsPanel {
+    background-color: rgba(0, 0, 0, .08);
+
+    .detailsTabs button {
+        color: rgb(150, 150, 150);
+
+        &.selected {
+            color: cornflowerblue !important;
+            box-shadow: 0 2px 0 cornflowerblue;
+        }
+    }
+
+    .discussion .bubble {
+        background-color: rgba(0, 0, 0, .3);
+    }
+}
+
+[layout='full-width'] {
+    .detailsPanel {
+        display: flex;
+        // opacity: 0;
+        // visibility: hidden;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 800px) {
+    .detailsPanel {
+        display: none !important;
+    }
+}

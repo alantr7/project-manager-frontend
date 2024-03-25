@@ -1,0 +1,160 @@
+@import '../styles/variables.scss';
+
+.loginPage {
+    background-color: rgba(0, 0, 0, .03);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    margin: 0 auto;
+    padding-top: 128px;
+    font-family: "Rubik", sans-serif;
+
+    @keyframes transition {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    &.redirecting {
+        animation: transition .6s forwards;
+    }
+}
+
+.appDetails {
+    width: 900px;
+    cursor: default;
+    user-select: none;
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        .appLogo {
+            width: 64px;
+            height: 64px;
+            margin-right: 8px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(../../public/logo.png);
+        }
+
+        h2 {
+            margin: 0 0 12px 0;
+            font-weight: 500;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 36px;
+
+        li {
+            padding: 6px 0;
+            padding-left: 36px;
+            margin: 6px 8px;
+            background-position: 0 center;
+            background-repeat: no-repeat;
+            background-size: 24px;
+        }
+
+        li[feature-name="builds"] {
+            background-image: url(../../public/icon-builds.png);
+        }
+
+        li[feature-name="issues"] {
+            background-image: url(../../public/icon-issues.png);
+        }
+
+        li[feature-name="sources"] {
+            background-image: url(../../public/icon-sources.png);
+            background-size: 36px;
+            background-position: -5px center;
+        }
+    }
+
+}
+
+.loginContainer {
+
+    position: relative;
+    width: 340px;
+    height: 400px;
+    padding: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, .1);
+    font-family: Arial;
+    margin-right: 172px;
+    background-color: white;
+
+    // background-color: rgba(0, 0, 0, .03);
+    border-radius: 8px;
+
+    .avatar {
+        display: block;
+        // background-color: rgba(0, 0, 0, .2);
+        // border: 2px solid rgba(0, 0, 0, .1);
+        border-radius: 50%;
+        background-image: url(../../public/customer.png);
+        background-repeat: no-repeat;
+        background-position: center 32px;
+        background-size: 96px;
+        width: 114px;
+        height: 114px;
+        margin: 24px auto;
+        filter: opacity(0.6);
+    }
+
+    .form {
+        width: 248px;
+        margin: 0 auto;
+        margin-top: 48px;
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            // border: 1px solid rgba(0, 0, 0, .2);
+            border: 0;
+            outline: 0;
+            font-family: "Rubik", sans-serif;
+            background-color: rgba(0, 0, 0, .03);
+        }
+
+        button.submit {
+            width: 100px;
+            padding: 6px 8px;
+            position: absolute;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid $primary-focus-bkg-color-light;
+            border-radius: 4px;
+            color: $primary-focus-color-light;
+            background-color: $primary-focus-bkg-color-light;
+            font-weight: 500;
+            font-family: 'Rubik', sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+
+            &:not(:disabled):hover {
+                background-color: white;
+            }
+
+            &:disabled {
+                filter: opacity(0.5);
+                cursor: not-allowed;
+            }
+        }
+    }
+    
+}

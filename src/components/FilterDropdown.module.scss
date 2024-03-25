@@ -1,0 +1,102 @@
+@import '../styles/variables.scss';
+
+.dropdown {
+    position: relative;
+    width: fit-content;
+    display: inline-block;
+
+    &.marginRight {
+        margin-right: 6px;
+    }
+
+    &.disabled .selectButton {
+        cursor: not-allowed;
+    }
+}
+
+.dropdownMenu {
+    position: fixed;
+    // background-color: rgb(242, 242, 242);
+    background-color: white;
+    width: 128px;
+    margin-top: 4px;
+    padding: 6px;
+    transform: translateX(-6px);
+    box-shadow: 0 2px 6px 1px rgba(0, 0, 0, .3);
+    border-radius: 4px;
+
+    div[role="option"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px;
+        font-family: "Rubik", sans-serif;
+        padding-left: 12px;
+        font-size: 15px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .05);
+        }
+    }
+}
+
+.base {
+    background-color: black;
+}
+
+.selectButton {
+    height: 20px;
+    // border: 1px solid rgba(0, 0, 0, .1);
+    color: #4A4A4A;
+    background-color: rgba(0, 0, 0, .05);
+    border-radius: 4px;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    padding: 5px 12px;
+    padding-right: 36px;
+    vertical-align: middle;
+    cursor: pointer;
+    display: inline-block;
+
+    &.active {
+        background-color: $primary-focus-bkg-color-light;
+        // color: $primary-focus-color-light;
+        font-weight: 500;
+    }    
+}
+
+.dropdown:not(.disabled) .selectButton {
+    &:hover {
+        background-color: rgba(0, 0, 0, .08);
+    }
+}
+
+
+
+.arrow {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    padding: 0 !important;
+    right: 8px;
+    top: 7px;
+    border-radius: 0 !important;
+    // background: yellow;
+    background-image: url(../../public/dropdown.png);
+    background-position: center !important;
+    background-size: 18px !important;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+[data-theme="dark"] {
+    .selectButton {
+        background-color: rgba(white, 0.03);
+        color: rgba(white, 0.7);
+    }
+}
+
+[data-theme="dark"] .arrow {
+    filter: invert(1);
+}

@@ -1,0 +1,527 @@
+@import '../styles/variables';
+
+.sidebar {
+
+  left: max(calc(50% - 550px - 296px), 0px);
+  top: 0;
+  padding-top: 42px;
+  position: fixed;
+  display: block;
+
+  width: 280px;
+  height: 100%;
+  box-sizing: border-box;
+
+  overflow-y: auto;
+
+  border-right: 1px solid $secondary-border-color-light;
+  font-family: arial;
+
+  z-index: 1;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(black, 0.3);
+  }
+
+  .workspace {
+    h3 {
+      position: relative;
+      cursor: pointer;
+      margin: 0 auto;
+      margin-top: 16px;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      text-align: center;
+      border-radius: 8px;
+
+      background-color: rgba(0, 0, 0, .05);
+      padding: 6px 6px;
+
+      width: 60%;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .08);
+      }
+
+      &::after {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        display: block;
+        right: 12px;
+        top: 5px;
+        content: ' ';
+        background-image: url(../../public/dropdown.png);
+        filter: invert(0.7);
+      }
+    }
+  }
+
+  .createGroup {
+    margin: 0 48px;
+    display: block;
+    margin-bottom: 24px;
+    background-color: #EFF3FF;
+    color: #2c4589;
+    border: 0;
+    border-radius: 12px;
+    font-family: "Rubik", sans-serif;
+    font-size: 17px;
+    padding: 6px 16px;
+    padding-right: 40px;
+    background-image: url(../../public/dropdown.png);
+    background-repeat: no-repeat;
+    background-position: 76px center;
+    background-size: 20px;
+    cursor: pointer;
+  }
+
+  .group {
+    position: relative;
+    margin: 2px auto;
+    width: 220px;
+    padding: 6px 10px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+
+    &:not(:has(.project)) {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .dragOverlay {
+      position: absolute;
+      background-color: rgba(0, 0, 0, .05);
+      left: 0px;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      border-radius: 8px;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      padding-top: 32px;
+
+      .dragInsert {
+        position: relative;
+        margin: 2px auto;
+        width: 100%;
+
+        padding: 0;
+        height: 27px;
+        padding-left: 20px;
+
+        div {
+          position: absolute;
+          width: 100%;
+          height: 6px;
+          background-color: white;
+
+          &:hover {
+            background-color: yellowgreen;
+          }
+        }
+
+        :first-child {
+          top: 0;
+        }
+
+        :last-child {
+          bottom: 0;
+        }
+      }
+    }
+
+    .groupName {
+      margin: 0 auto;
+      padding-left: 6px;
+      margin-bottom: 8px;
+
+      font-weight: 500;
+      font-family: 'Rubik', sans-serif;
+
+      color: #868686;
+      cursor: pointer;
+
+      &::before {
+        content: ' ';
+        background-image: url(../../public/dropdown.png);
+        background-size: 18px;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: -3px;
+        left: -6px;
+        display: block;
+        width: 24px;
+        height: 24px;
+        filter: invert(0.6);
+        transition: transform .15s;
+      }
+    }
+
+    &.highlighted {
+      background-color: #F5F5F5;
+      .groupName {
+        background-color: #F5F5F5;
+      }
+    }
+
+    &.folded {
+      .groupName::before {
+        transform: rotate(-90deg);
+      }
+    }
+
+    .groupActions {
+      position: absolute;
+      right: 6px;
+      top: 4px;
+      display: none;
+      z-index: 10;
+
+      button {
+        cursor: pointer;
+        border: 0;
+        border-radius: 6px;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 4px;
+        line-height: 14px;
+        color: rgba(0, 0, 0, .3);
+        background-color: transparent;
+        background-size: 13px;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: grayscale(100%);
+
+        &:hover {
+          color: rgba(0, 0, 0, .5);
+          background-color: rgba(0, 0, 0, .05);
+        }
+
+        &:active {
+          color: rgba(0, 0, 0, .5);
+          background-color: rgba(0, 0, 0, .1);
+        }
+
+        &.renameGroup {
+          width: 24px;
+          height: 24px;
+          background-image: url(../../public/edit.png);
+        }
+
+        &.deleteGroup {
+          width: 24px;
+          height: 24px;
+          background-image: url(../../public/delete.png);
+        }
+      }
+    }
+
+    &:hover .groupActions {
+      display: inline-block;
+    }
+  }
+
+  .project {
+    margin: 2px auto;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    padding: 8px 8px;
+    padding-left: 20px;
+
+    cursor: pointer;
+    user-select: none;
+    font-size: 16px;
+    font-family: 'Rubik', sans-serif;
+
+    position: relative;
+
+    p {
+      margin: 0;
+    }
+
+    .projectIcon {
+      position: absolute;
+      left: 18px;
+      top: 9px;
+      width: 18px;
+      height: 18px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .name {
+      padding-left: 24px;
+      display: inline-block;
+      color: rgba(0, 0, 0, .8);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .05);
+    }
+
+    &:active {
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    &.selected {
+      // background-color: rgba(0, 0, 0, .05);
+      background-color: #ebf0ff;
+
+      .name {
+        color: $primary-focus-color-light;
+        font-weight: 500;
+      }
+
+      .projectIcon::before {
+        // display: block;
+        width: 6px;
+        height: 26px;
+        background-color: $primary-focus-bkg-color-dark;
+        // background-color: cornflowerblue;
+        transform: translate(-14px, -4px);
+        border-radius: 4px;
+
+        content: ' ';
+      }
+    }
+
+    &.highlighted {
+      background-color: #F5F5F5;
+    }
+
+  }
+
+  .project.page {
+    .projectIcon {
+      filter: grayscale(1) opacity(.8);
+    }
+
+    &.selected .projectIcon {
+      filter: unset;
+    }
+  }
+
+  .sidebarSeparator {
+    position: relative;
+    color: #878787;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+    cursor: default;
+    user-select: none;
+
+    p {
+      display: block;
+      position: relative;
+      width: 128px;
+      padding: 8px;
+      margin: 0 auto;
+      background: $sidebar-color-light;
+      z-index: 2;
+    }
+
+    hr {
+      width: 200px;
+      height: 1px;
+      // top: 50%;
+      // left: calc(50% - 128px);
+      background-color: #DBDBDB;
+      border: none;
+      margin: 0 auto;
+    }
+  }
+
+}
+
+.workspaceContextMenu {
+  width: 240px !important;
+  padding: 6px 0 !important;
+  animation: contextAppear .1s;
+
+  @keyframes contextAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(-10%);
+    }
+    to {
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .item {
+    padding: 6px 0 !important;
+    padding-left: 52px !important;
+    font-size: 15px !important;
+    //font-family: "Roboto";
+
+    div {
+      top: 4px !important;
+      left: 24px !important;
+    }
+  }
+
+  hr {
+    margin: 6px 0 !important;
+  }
+
+  h5 {
+    text-align: center;
+    color: #797979;
+    font-weight: normal;
+    margin-top: 16px;
+    margin-bottom: 10px;
+  }
+
+  .workspace {
+    display: flex;
+    padding: 6px 14px;
+    padding-left: 20px;
+    align-items: center;
+    cursor: default;
+    background: white;
+
+    &:hover {
+      background-color: rgba(black, 0.05);
+    }
+
+    &:active {
+      background-color: rgba(black, 0.08);
+    }
+
+    &.active {
+      transition: background .2s;
+      background: linear-gradient(
+                      90deg,
+                      $primary-focus-color-light 2%,
+                      #EEF1FF 0
+      );
+    }
+
+    img {
+      width: 34px;
+      height: 34px;
+      aspect-ratio: 1;
+      margin-right: 8px;
+    }
+
+    .collabs {
+      font-size: 13px;
+      color: #878787;
+    }
+  }
+
+  .createWorkspace {
+    font-family: "Rubik", sans-serif;
+    color: #0045AC;
+    background-color: #EEF1FF;
+    border: 0;
+    border-radius: 8px;
+    display: block;
+    margin: 6px auto;
+    margin-top: 16px;
+    padding: 6px 12px;
+    font-size: 15px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e8ebff;
+    }
+  }
+}
+
+[data-theme='dark'] .sidebar {
+  background-color: rgba(0, 0, 0, .2);
+  border-right-color: $secondary-border-color-dark;
+
+  hr {
+    background-color: $secondary-border-color-dark !important;
+  }
+
+  .groupName {
+    background-color: $sidebar-bkg-dark !important;
+  }
+
+  .project {
+    .name {
+      color: $sidebar-color-dark;
+    }
+  }
+
+  .project.selected {
+    background-color: $primary-focus-bkg-color-dark;
+    color: $primary-focus-color-dark;
+
+    .name {
+      color: $primary-focus-color-dark;
+    }
+  }
+}
+
+[layout='full-width'] .sidebar {
+  position: static;
+  overflow: hidden;
+  // width: 280px;
+  min-width: 312px;
+  height: 100vh;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+
+  .groupName {
+    padding-left: 18px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+
+    &:hover {
+      color: rgba(0, 0, 0, .7);
+    }
+  }
+
+  .sidebarSeparator {
+    margin: 0;
+
+    hr {
+      width: 100%;
+      // border-color: rgba(0, 0, 0, .005);
+    }
+  }
+
+  .projects {
+    overflow-y: auto;
+    // padding-top: 24px;
+    margin: 24px 0;
+    flex-grow: 1;
+
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: rgba(black, 0.3);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .sidebar {
+    position: fixed !important;
+    display: none !important;
+  }
+}

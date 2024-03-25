@@ -1,0 +1,100 @@
+.popup {
+    position: absolute;
+    top: 140px;
+    right: 378px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(black, 25%);
+    width: 280px;
+    z-index: 2;
+    font-family: "Roboto", sans-serif;
+
+    .header {
+        position: relative;
+        h3 {
+            text-align: center;
+            font-weight: 500;
+            font-size: 18px;
+            margin: 12px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 0;
+            right: 24px;
+            width: 24px;
+            height: 24px;
+
+            background-image: url(../../../../public/close.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 14px;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .05);
+            }
+            &:active {
+                background-color: rgba(0, 0, 0, .08);
+            }
+        }
+    }
+
+    .group {
+        margin: 0 24px;
+        margin-bottom: 20px;
+        h3 {
+            font-weight: 500;
+            font-size: 17px;
+            margin: 0 0 2px 0;
+        }
+
+        .options {
+            button {
+                display: flex;
+                align-items: center;
+                border: 0;
+                padding: 0;
+                font-family: "Roboto", sans-serif;
+                font-size: 17px;
+                margin: 2px 0;
+            }
+        }
+    }
+
+    .actionButtons {
+        padding: 4px 24px;
+        margin-bottom: 12px;
+        button {
+            display: block;
+            width: 100%;
+            font-family: "Rubik", sans-serif;
+            font-size: 16px;
+            padding: 6px 0;
+            margin-bottom: 4px;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        button.apply {
+            background-color: #EFF3FF;
+            color: #1F3B4D;
+
+            &:hover {
+                background-color: #e9efff;
+            }
+        }
+        button.reset {
+            background-color: #F5F5F5;
+            color: #3D3D3D;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .05);
+            }
+        }
+    }
+
+}

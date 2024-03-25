@@ -1,0 +1,139 @@
+.account {
+    position: relative;
+    // background-color: #F8F8F8;
+    // background-color: #666666;
+    // background-color: rgba(0, 0, 0, .2);
+    color: #1F3B4D !important;
+    font-weight: 500;
+    padding: 8px 40px !important;
+    padding-left: 18px !important;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px !important;
+    width: unset !important;
+    height: unset !important;
+    border-radius: 32px !important;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+
+    &::after {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        display: block;
+        right: 12px;
+        top: 7px;
+        content: ' ';
+        background-image: url(../../../public/dropdown.png);
+        filter: invert(0.6);
+    }
+
+    span {
+        vertical-align: center;
+    }
+
+    span:first-child {
+        width: 24px;
+        height: 24px;
+        background-image: url(/default-avatar.png);
+        background-size: cover;
+        margin-right: 6px;
+        border-radius: 50%;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .03);
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, .05);
+    }
+}
+
+.accountSettings {
+
+    position: fixed;
+    top: 68px;
+    right: 64px;
+    width: 280px;
+    // background-color: #F2F2F2;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 25%);
+    padding: 10px 0;
+    font-family: "Rubik", sans-serif;
+    border: 2px solid rgba(0, 0, 0, .03);
+    z-index: 2;
+
+    .overview {
+        display: flex;
+        margin-top: 8px;
+
+        img {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 50%;
+            margin-left: 24px;
+        }
+
+        p {
+            margin: 0;
+            margin-left: 12px;
+
+            &.name {
+                font-size: 22px;
+            }
+            &.email {
+                color: #A1A1A1;
+                font-size: 12px;
+                margin-top: 2px;
+            }
+        }
+    }
+
+    hr {
+        width: 100%;
+        border: 0;
+        border-top: 1px solid #ececec;
+        margin: 18px auto 0 auto;
+    }
+
+    .buttons {
+        hr {
+            margin: 8px auto !important;
+        }
+        margin: 8px 0;
+        button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            border-radius: 0;
+            margin: 0;
+            font-family: "Roboto", sans-serif;
+            padding-left: 48px;
+            font-size: 17px;
+            background-position: 24px center;
+            background-size: 18px;
+            margin-left: 0 !important;
+
+            &.changePassword {
+                background-image: url(../../../public/password.png);
+            }
+            &.changeAvatar {
+                background-image: url(../../../public/change-avatar.png);
+            }
+            &.apiKeys {
+                cursor: not-allowed;
+                background-image: url(../../../public/api-keys.png);
+            }
+            &.logout {
+                background-image: url(../../../public/logout.png);
+                // margin: 20px 0 6px 0;
+            }
+        }
+    }
+
+}

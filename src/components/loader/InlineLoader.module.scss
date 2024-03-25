@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.loader {
+    display: flex;
+    font-family: "Rubik", sans-serif;
+    align-items: center;
+}
+
+.spinner {
+    display: block;
+    width: 12px;
+    height: 12px;
+    aspect-ratio: 1;
+    margin-right: 6px !important;
+
+    border: 3px solid rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    border-bottom-color: $primary-focus-color-light;
+
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

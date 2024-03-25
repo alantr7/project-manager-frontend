@@ -1,0 +1,1 @@
+.issueCard{position:fixed;width:400px;background-color:#fff;top:510px;z-index:1;padding:10px 16px;padding-left:40px;border-radius:6px;box-shadow:0 2px 6px 0 rgba(0,0,0,.1);font-family:"Rubik",sans-serif}.issueCard h3{margin:4px 0;font-size:16px;font-weight:500}.issueCard h3::after{content:" #613";font-weight:normal;color:rgba(0,0,0,.4)}.issueCard p{margin:2px 0;font-size:14px}

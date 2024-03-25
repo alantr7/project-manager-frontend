@@ -1,0 +1,1 @@
+export type Setter<T> = (input: T) => void;

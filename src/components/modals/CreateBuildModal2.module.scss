@@ -1,0 +1,257 @@
+@import '../../styles/variables.scss';
+
+.modal {
+    width: 560px;
+    min-height: 500px;
+    height: fit-content;
+    margin-top: 64px;
+    background-color: white;
+    font-family: 'Rubik', sans-serif;
+    outline: 0;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 4px 4px 2px rgba(0,0,0,.2);
+    padding: 24px 40px;
+    padding-bottom: 128px;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 500;
+        color: black;
+    }
+
+    p {
+        margin: 12px 0 4px 0;
+    }
+
+    #buildname {
+        width: 400px;
+    }
+
+    input {
+        outline: 0;
+        margin: 6px 0 32px 0;
+        font-size: 18px;
+        padding: 6px 8px;
+        border: 0;
+        background-color: #F1F1F1;
+    }
+
+    hr {
+        margin: 0 0 24px 0;
+        border: 1px solid #D6D6D6;
+        border-width: 1px 0 0 0;
+    }
+
+    section:has(.artifacts) {
+        position: relative;
+        min-height: 200px;
+    }
+
+    .artifact {
+        display: inline-flex;
+        width: 240px;
+        align-items: center;
+        padding: 2px 0;
+        margin-bottom: 8px;
+        margin-right: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        user-select: none;
+
+        img {
+            width: 36px;
+            height: 36px;
+            transform: translateX(-5px) translateY(-1px);
+        }
+        
+        .artifactInfo {
+            // flex-grow: 1;
+            width: 200px;
+            max-width: 180px;
+        }
+
+        p {
+            margin: 0;
+            margin-bottom: 2px;
+            font-size: 16px;
+
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            transform: translateX(-2px);
+        }
+
+        .indicatorProgress, .indicatorCompleted, .indicatorError {
+            color: #315DAD;
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .indicatorError {
+            color: darkred;
+        }
+
+        .artifactDelete {
+            border: 0;
+            visibility: hidden;
+        }
+
+        &:hover .artifactDelete {
+            visibility: visible;
+        }
+    }
+
+    button.artifactUpload {
+        margin-top: 20px;
+        background-color: #F4F4F4;
+        border: 0;
+        font-family: "Rubik", sans-serif;
+        padding: 6px 16px;
+        padding-left: 32px;
+        font-size: 16px;
+
+        background-image: url(../../../public/upload.png);
+        background-repeat: no-repeat;
+        background-position: 8px center;
+        background-size: 20px;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .08);
+        }
+        &:active {
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+    }
+
+    .actionButtons {
+        display: flex;
+        align-items: center;
+
+        button {
+            padding: 6px 10px;
+            margin-right: 4px;
+            background-color: #F1F1F1;
+            border: 0;
+            border-radius: 6px;
+            font-family: "Rubik", sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(black, 0.08);
+            }
+            &:active {
+                background-color: rgba(black, 0.11);
+            }
+        }
+
+        a.separator {
+            display: inline-block;
+            height: 28px;
+            width: 1px;
+            border-right: 1px solid #bebebe;
+            margin-left: 4px;
+            margin-right: 8px;
+        }
+    }
+
+    ul {
+        padding-left: 20px;
+        li {
+            margin-bottom: 10px;
+
+            &.autolog {
+                padding-left: 20px;
+                background-image: url(../../../public/sparkle.png);
+                background-repeat: no-repeat;
+                background-size: 16px;
+                background-position: 0 2px;
+            }
+        }
+    }
+    
+    .creationProgressWrapper {
+        position: absolute;
+        left: 40px;
+        bottom: 56px;
+    }
+    
+    .creationProgress {
+
+        width: 200px;
+        height: 6px;
+
+        margin-top: 12px;
+        
+        background-color: #D9D9D9;
+        border-radius: 6px;
+
+        .bar {
+            background-color: #315DAD;
+            height: 6px;
+            transition: width .2s;
+        }
+
+        .checkpoint {
+            position: absolute;
+            display: block;
+
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            
+            background-color: inherit;
+            transform: translateY(-6px);
+
+            transition: background-color .2s;
+
+            &.current {
+                background-color: #315DAD;
+                transition-delay: .1s;
+            }
+
+            &:nth-child(2) {
+                left: 50%;
+                transform: translateX(-50%) translateY(-6px);
+            }
+
+            &:nth-child(3) {
+                left: 100%;
+                transform: translateX(-50%) translateY(-6px);
+            }
+        }
+
+
+    }
+
+    button#back {
+        position: absolute;
+        right: 152px;
+        bottom: 48px;
+        color: #797979;
+        font-size: 18px;
+        border: 0;
+        outline: 0;
+        //font-weight: 500;
+        font-family: "Rubik", sans-serif;
+        cursor: pointer;
+    }
+
+    button#submit {
+        position: absolute;
+        right: 48px;
+        bottom: 48px;
+        color: #315DAD;
+        font-size: 18px;
+        border: 0;
+        outline: 0;
+        font-weight: 500;
+        font-family: "Rubik", sans-serif;
+        cursor: pointer;
+    }
+}

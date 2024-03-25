@@ -1,0 +1,126 @@
+.activity {
+
+  .content {
+    margin-left: 72px;
+    overflow-y: scroll;
+    height: calc(100vh - 96px);
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, .2);
+    }
+  }
+
+  .filtersBar {
+    position: sticky;
+    padding-top: 32px !important;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px solid black;
+    border-color: rgba(0, 0, 0, .1);
+    max-width: 1134px;
+    z-index: 1;
+    display: flex;
+
+    .filters {
+      flex-grow: 1;
+    }
+  }
+
+  .logs {
+    .group {
+      max-width: 1134px;
+      h3 {
+        position: sticky;
+        top: 72px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        padding: 8px 0;
+        padding-left: 16px;
+        background-color: rgba(white, 0.8);
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+
+  }
+
+  article.entry {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 6px;
+    width: 1100px;
+    padding: 8px 16px;
+    margin: 8px 0;
+    font-family: "Rubik", sans-serif;
+    cursor: default;
+
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      margin-top: 10px;
+    }
+
+    .project {
+      display: inline-block;
+      font-size: 14px;
+      background-color: rgba(black, 5%);
+      //transform: translateY(-4px);
+      padding: 2px 6px;
+      margin-bottom: 4px;
+      margin-right: 4px;
+      border-radius: 4px;
+    }
+
+    strong {
+      font-weight: 500;
+    }
+
+    span a {
+      background-color: rgba(black, 3%);
+      border-radius: 4px;
+      font-size: 14px;
+      padding: 2px;
+      font-family: "Roboto";
+      font-weight: 500;
+      color: #1F3B4D;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    table {
+      // border: 1px solid rgba(0, 0, 0, .2);
+      padding: 4px;
+      padding-left: 0;
+      margin-top: 8px;
+      font-size: 14px;
+
+      tr {
+        td {
+          padding: 0 6px;
+          padding-left: 0;
+        }
+
+        td:first-child {
+          font-weight: 500;
+          width: 148px;
+        }
+      }
+    }
+  }
+}
+
+[data-theme="dark"] .activity {
+  article.entry {
+    border-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .2);
+  }
+}

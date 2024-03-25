@@ -1,0 +1,29 @@
+.navbar {
+    border-bottom: 1px solid #F3F3F3;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    p, h3, button {
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        display: inline-block;
+        margin-right: 24px;
+        //font-family: "Rubik";
+        font-weight: 500;
+    }
+
+    .location {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        padding-left: 72px;
+    }
+
+    .userButtons {
+
+    }
+}

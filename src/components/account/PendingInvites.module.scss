@@ -1,0 +1,170 @@
+@import "../../styles/variables";
+
+.button {
+    background-image: url(../../../public/mail2.png) !important;
+    background-size: 32px !important;
+
+    &:not([notif-count="0"])::after {
+        position: absolute;
+        top: -4px;
+        right: 0;
+        width: 20px;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: attr(notif-count);
+        color: white;
+        font-size: 12px;
+        border-radius: 50%;
+        // padding: 4px;
+        // background-color: rgb(255, 113, 113);
+        background-color: $primary-focus-bkg-color-light;
+        color: $primary-focus-color-light;
+        border: 1px solid rgba($primary-focus-color-light, 0.3);
+        font-weight: bold;
+        font-family: 'Poppins';
+    }
+}
+
+.notifications {
+    position: fixed;
+    top: 68px;
+    right: 232px;
+    width: 340px;
+    // background-color: #F2F2F2;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 25%);
+    padding: 10px 0;
+    border: 2px solid rgba(0, 0, 0, .03);
+    background-color: white;
+    font-family: "Rubik", sans-serif;
+    z-index: 5;
+
+    hr {
+        border-color: rgba(0, 0, 0, .05);
+        margin: 0 auto;
+        width: 92%;
+    }
+
+    // animation: notif-appear .3s forwards;
+    @keyframes notif-appear {
+        from {
+            transform: translateY(8px);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    margin: 0;
+    padding: 1px 20px !important;
+    font-size: 16px;
+    color: $primary-focus-color-light;
+    background-color: white;
+    user-select: none;
+}
+
+.notificationsList {
+    max-height: 530px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, .7);
+    }
+
+    hr {
+        margin: 10px auto;
+        margin-bottom: 0px;
+    }
+}
+
+.notification {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    border-bottom: 1px solid #EFF3FF;
+
+    .content {
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        justify-content: center;
+        flex-direction: column;
+        line-height: 22px;
+    }
+
+    .thumbnail {
+        width: 36px;
+        height: 36px;
+        margin-top: 2px;
+        margin-right: 16px;
+        background-size: cover;
+        background-image: url(https://dercraft.net/img/logo.webp);
+        background-repeat: no-repeat;
+        border-radius: 4px;
+    }
+
+    p {
+    }
+
+    .source {
+        font-size: 13px;
+        margin-top: 4px;
+        color: #4A4A4A;
+    }
+
+    .date {
+        color: #808080;
+    }
+
+    .content {
+        color: black;
+    }
+
+    p {
+        margin: 0;
+    }
+    
+    &:hover {
+        background-color: rgba(0, 0, 0, .03);
+    }
+    &:active {
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    .actions {
+        margin-top: 6px;
+        button {
+            width: unset !important;
+            height: unset !important;
+            border-radius: 8px;
+            margin-left: 0 !important;
+            margin-right: 4px;
+            font-family: Roboto;
+            font-size: 14px;
+            padding: 6px 10px !important;
+        }
+
+        button.accept {
+            background-color: #1F3B4D;
+            color: white;
+            font-weight: 500;
+        }
+        button.decline {
+            background-color: #EFF3FF;
+        }
+    }
+
+}

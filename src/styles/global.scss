@@ -1,0 +1,217 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Nandinagari&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+body {
+    background-color: $bkg-color-light;
+    color: $text-color-light;
+    overflow: hidden scroll;
+    margin: 0;
+}
+
+strong {
+    font-weight: bold;
+}
+
+button {
+    background-color: white;
+    border: 1px solid black;
+}
+
+h2 {
+    font-family: "Rubik", sans-serif;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+[layout='full-width'] {
+    overflow: hidden;
+
+    .page-content {
+        padding-left: 64px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page {
+        max-width: unset;
+    }
+}
+
+[layout='full-width'] .page-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    .page-content {
+        padding-left: 0;
+        height: 100%;
+    }
+    .page {
+        position: relative;
+        margin: 0;
+        max-width: unset;
+        flex-grow: 1;
+        width: unset;
+        height: 100%;
+        left: 0 !important;
+        padding-left: 0;
+
+        &.expandable {
+            padding-left: 64px;
+        }
+    }
+}
+
+.page {
+    // position: relative;
+    // position: absolute;
+    // left: calc(50% - 568px);
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    min-width: 300px;
+    max-width: 1100px;
+    height: calc(100vh - 48px);
+    padding-left: 96px;
+    // overflow: scroll;
+
+    font-family: arial;
+    // padding: 32px;
+
+    &.expandable {
+        position: fixed;
+        overflow: hidden;
+
+        left: calc(50% - 600px);
+        height: calc(100vh - 8px);
+        padding-left: 0 !important;
+        box-sizing: border-box;
+    }
+
+    &::-webkit-scrollbar {
+        height: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .3);  
+    }
+}
+
+* {
+    // font-family: 'Rubik', sans-serif;
+    // font-weight: 300;
+    // letter-spacing: 0.6px;
+}
+
+[data-theme='dark'], [data-theme='dark'] body {
+    background-color: $bkg-color-dark;
+    color: $text-color-dark;
+
+    .modal-overlay {
+        background-color: rgba(0, 0, 0, .7);
+    }
+    .modal {
+        background-color: $bkg-color-dark;
+    }
+}
+
+.swal2-container {
+    font-family: arial;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    z-index: 3;
+    display: flex;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    animation: modal-overlay-appear .2s;
+}
+
+.modal {
+    animation: modal-appear .2s;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 48px;
+    background-color: white;
+    width: 600px;
+    height: 400px;
+    outline: 0;
+}
+
+.modal-closing {
+    animation: modal-disappear .5s forwards !important;
+}
+
+.modal-overlay-closing {
+    animation: modal-overlay-disappear .5s forwards !important;
+}
+
+@keyframes modal-overlay-appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-appear {
+    from {
+        transform: scale(0.85);
+        opacity: 0.2;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes modal-disappear {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(0.7);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes modal-overlay-disappear {
+    0% {
+        // transform: scale(1);
+        opacity: 1;
+    }
+    60% {
+        // transform: scale(0.7);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        // transform: scale(0.7);
+    }
+}
+
+
+@media (max-width: 1660px) {
+    .page {
+        left: 272px !important;
+        padding-left: 64px;
+        margin: 0; 
+    }
+}

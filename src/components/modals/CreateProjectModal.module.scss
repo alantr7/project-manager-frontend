@@ -1,0 +1,181 @@
+.modal {
+    border-radius: 6px;
+    font-family: "Rubik", sans-serif;
+
+    width: 540px;
+    height: 560px;
+    padding: 16px 36px;
+
+    box-shadow: 0 4px 4px 2px rgba(0,0,0,.08);
+    cursor: default;
+
+    hr {
+        margin: 0;
+        margin-top: 16px;
+        height: 0;
+        border: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    .group {
+        margin-top: 36px;
+        margin-right: 24px;
+        margin-bottom: 10px;
+        font-size: 14px;
+
+        p {
+            margin: 3px 0;
+        }
+
+        .dropdown {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, .05);
+            font-weight: 500;
+            font-size: 16px;
+            justify-content: center;
+            align-items: center;
+            width: 220px;
+            cursor: pointer;
+
+            .control:hover {
+                background-color: rgba(0, 0, 0, .03);
+            }
+
+            .control, .option {
+                padding: 6px;
+                padding-left: 36px;
+                background-image: url(../../../public/ia-logo.png);
+                background-repeat: no-repeat;
+                background-size: 20px;
+                background-position: 10px center;
+            }
+
+            .icon {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+                background-image: url(../../../public/ia-logo.png);
+                background-repeat: no-repeat;
+                background-size: 18px;
+            }
+
+            .option {
+                font-weight: normal;
+                &:hover {
+                    background-color: rgba(0, 0, 0, .05);
+                }
+            }
+
+            .menu {
+                // border: 1px solid rgb(200, 200, 200);
+                border-top: 0;
+                width: 220px;
+                position: absolute;
+                background-color: white;;
+                box-sizing: border-box;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+            }
+        }
+    }
+
+    .flex {
+        display: flex;
+        margin: 28px 0 24px 0;
+        width: 100%;
+
+        .iconSection {
+            margin-right: 16px;
+
+            .icon {
+                width: 96px;
+                background-color: rgba(0, 0, 0, .05);
+                aspect-ratio: 1;
+                border-radius: 4px;
+                // background-image: url(../../../public/ia-logo.png);
+                background-image: attr(data-icon);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            p {
+                margin: 6px 0;
+                text-align: center;
+                font-size: 14px;
+            }
+        }
+
+        .detailsSection {
+            flex-grow: 1;
+            div {
+                position: relative;
+            }
+        }
+    }
+
+    input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px 16px;
+        font-size: 18px;
+        margin-bottom: 8px;
+        border: 0;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, .05);
+        font-family: "Rubik", sans-serif;
+        outline: 0;
+        overflow: hidden;
+    }
+
+    textarea {
+        font-size: 16px;
+        resize: none;
+    }
+
+    .charCounter {
+        position: absolute;
+        right: 12px;
+        bottom: 20px;
+        margin: 0;
+        color: rgba(0, 0, 0, .4);
+    }
+
+    .label {
+        margin: 0;
+        margin-top: 24px;
+        padding-left: 8px;
+        color: #777777;
+    }
+
+    .projectVisibility {
+        margin-top: 28px;
+        p {
+            margin: 0;
+        }
+        .visibilityHint {
+            margin-top: 4px;
+            font-size: 14px;
+        }
+    }
+
+    .submit {
+        font-family: "Rubik", sans-serif;
+        font-size: 18px;
+        color: #315DAD;
+        font-weight: 500;
+        position: absolute;
+        right: 40px;
+        bottom: 32px;
+        border: 0;
+        cursor: pointer;
+        padding: 4px 10px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .03);
+        }
+        &:active {
+            background-color: rgba(0, 0, 0, .05);
+        }
+    }
+
+}
