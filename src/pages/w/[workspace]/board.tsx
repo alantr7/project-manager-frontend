@@ -116,7 +116,7 @@ export default function Board() {
     }
 
     function createList(title: string) {
-        api.post<BoardList>(`/v1/board/lists`, axios.toFormData({ name: title, type: 'AUTO', criteria: prompt('Criteria:') }))
+        api.post<BoardList>(`/v1/board/lists`, axios.toFormData({ name: title }))
             .then(r => {
                 setLists([...lists, r.data]);
             })
