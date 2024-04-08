@@ -7,7 +7,7 @@ type UseLocalReturn = [
 
 type UseLocalSet = (value: string) => void;
 
-export function useLocal(key: string, defaultValue: string | null = null) {
+export function useLocal(key: string, defaultValue: string | null = null): UseLocalReturn {
     const [ value, setValue ] = useState<string | null>(defaultValue);
     useEffect(() => {
         setValue(window.localStorage.getItem(key));
