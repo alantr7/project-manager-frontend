@@ -34,6 +34,7 @@ import {useFetch} from "@/hooks/useFetch";
 import {Notification} from "@/types/Notification";
 import {Workspace} from "@/types/Workspace";
 import Navbar from "@/components/navbar/Navbar";
+import {useLocal} from "@/hooks/useLocal";
 
 const firebaseConfig = {
     apiKey: "AIzaSyByURAtf7qlpWAqItqcvdg9ddla0wjhL9I",
@@ -80,6 +81,7 @@ export default function App({pageProps, Component}: AppProps) {
     const [isPageLoaded, setPageLoaded] = useState(true);
     const [attempt, setAttempt] = useState(1);
     const [isInvitingCollaborator, setIsInvitingCollaborator] = useState(false);
+    const [latestWorkspace, setLatestWorkspace] = useLocal('latestWorkspace', null);
 
     const [workspacesLoaded, setWorkspacesLoaded] = useState(false);
     const [projectsLoaded, setProjectsLoaded] = useState(false);
@@ -137,6 +139,8 @@ export default function App({pageProps, Component}: AppProps) {
                     setLoadingText('Ready!');
                     setLoadingProgress(100);
                 });
+
+                setLatestWorkspace(workspaceId);
             }).catch(err => {
                 setAttempt(att => att + 1);
             });
