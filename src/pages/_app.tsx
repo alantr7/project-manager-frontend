@@ -36,7 +36,13 @@ import {Workspace} from "@/types/Workspace";
 import Navbar from "@/components/navbar/Navbar";
 
 const firebaseConfig = {
-
+    apiKey: "AIzaSyByURAtf7qlpWAqItqcvdg9ddla0wjhL9I",
+    authDomain: "myqualia-45f29.firebaseapp.com",
+    projectId: "myqualia-45f29",
+    storageBucket: "myqualia-45f29.appspot.com",
+    messagingSenderId: "551038491560",
+    appId: "1:551038491560:web:b1035bcbd96c583b4cdb9d",
+    measurementId: "G-S69W1QP1H7"
 };
 
 export let UserContext = React.createContext({} as User);
@@ -105,14 +111,13 @@ export default function App({pageProps, Component}: AppProps) {
         setLoading(true);
         setLoadingProgress(15);
         setLoadingText("Loading workspaces");
-        api.get<Workspace[]>(`/v1/workspaces`).then(result => {
-            setWorkspaces(result.data);
-            setWorkspace(result.data.find(w => w.weak_id === workspaceId) || {weak_id: "", name: "Loading"});
-            setWorkspacesLoaded(true);
+
+        function loadWorkspace(workspaces: Workspace[]) {
+            setWorkspace(workspaces.find(w => w.weak_id === workspaceId) || {weak_id: "", name: "Loading"});
             setProjectsLoaded(false);
 
             setLoadingProgress(30);
-            if (result.data.length === 0 || router.route === '/') {
+            if (workspaces.length === 0) {
                 setLoadingText('Ready!');
                 setLoadingProgress(100);
                 setProjectsLoaded(true);
@@ -135,7 +140,22 @@ export default function App({pageProps, Component}: AppProps) {
             }).catch(err => {
                 setAttempt(att => att + 1);
             });
-        });
+        }
+
+        if (workspacesLoaded) {
+            loadWorkspace(workspaces);
+        } else {
+            api.get<Workspace[]>(`/v1/workspaces`).then(result => {
+                setWorkspaces(result.data);
+                setWorkspacesLoaded(true);
+
+                if (router.asPath === '/') {
+                    return;
+                }
+
+                loadWorkspace(result.data);
+            });
+        }
     }, [user.isLoggedIn, attempt, workspaceId]);
     // isProjectsContextLoading = false;
     // }
@@ -165,7 +185,7 @@ export default function App({pageProps, Component}: AppProps) {
         if (!isFirebaseReady)
             return;
 
-        if (attempt > 1) {
+        if (attempt > 1 && !user.isLoggedIn) {
             setLoadingText(`Logging in (${attempt})`);
         }
 

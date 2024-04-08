@@ -7,6 +7,8 @@ export default function Home(props: any) {
   const app = useContext(AppContext);
   const router = useRouter();
 
+  
+
   useEffect(() => {
       if (app.workspaces.length) {
           router.push(`/w/${app.workspaces[0].weak_id}/board`);
