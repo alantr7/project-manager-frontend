@@ -17,7 +17,7 @@ import iconRename from '../../public/edit.png';
 import iconLeave from '../../public/logout.png';
 import iconDelete from '../../public/delete.png';
 import {Group} from "@/types/Group";
-import {api} from "@/pages/_app";
+import {api, UserContext} from "@/pages/_app";
 import {Project} from "@/types/Project";
 import Swal from "sweetalert2";
 import {ProjectContextMenu} from "./context_menus/ProjectContextMenu";
@@ -176,8 +176,10 @@ function SidebarGroup({currentProject, group, navigate, handleCreateProject, set
         }));
     }
 
-    return <div className={`${style.group} ${conditional(!isExpanded, style.folded)} ${conditional(contextMenuPosition, style.highlighted)}`} onContextMenu={handleContextMenu}
-                onDragOver={e => handleDragOver(e, group)} onDrop={e => handleDrag(e, group)} draggable={true}>
+    return <div
+        className={`${style.group} ${conditional(!isExpanded, style.folded)} ${conditional(contextMenuPosition, style.highlighted)}`}
+        onContextMenu={handleContextMenu}
+        onDragOver={e => handleDragOver(e, group)} onDrop={e => handleDrag(e, group)} draggable={true}>
         <p className={style.groupName} onClick={() => setExpanded(!isExpanded)}>{name}</p>
         <div className={style.groupActions}>
 
@@ -294,8 +296,10 @@ function SidebarProject({project, selected, navigate, deleteProject, groups, set
         });
     }
 
-    return <div className={style.project + ' ' + (selected ? style.selected : '') + ' ' + (isContextMenuOpen ? style.highlighted : '')} onContextMenu={handleContextMenu}
-                onClick={() => setProject(project.id)} draggable={true} onDragStart={handleDragStart}>
+    return <div
+        className={style.project + ' ' + (selected ? style.selected : '') + ' ' + (isContextMenuOpen ? style.highlighted : '')}
+        onContextMenu={handleContextMenu}
+        onClick={() => setProject(project.id)} draggable={true} onDragStart={handleDragStart}>
         <p className={style.projectIcon} style={{backgroundImage: `url(${project.icon})`}}></p>
         <p className={style.name}>{project.name}</p>
 
@@ -316,6 +320,7 @@ function Sidebar({navigate, setProjects, inviteCollaborator}: {
     inviteCollaborator: () => void
 }) {
 
+    const user = useContext(UserContext);
     const {groups, workspace} = useContext(AppContext);
     const router = useRouter();
 
@@ -369,12 +374,25 @@ function Sidebar({navigate, setProjects, inviteCollaborator}: {
         })
     }
 
+    function leaveWorkspace() {
+        api.delete(`/v1/workspaces/${workspace.weak_id}/members/${user.id}`).then(r => {
+            document.location.href = '/';
+        }).catch((r) => {
+            if (r.response.status === 403) {
+                Swal.fire({title: "Error occurred", text: "You can not leave the workspace as you are its owner.", icon: "error"});
+                return;
+            }
+        });
+    }
+
     return <>
         <div className={style.sidebar}>
 
             <WorkspaceButton
                 createProject={() => (setSelectedGroup(groups.find(group => group.id === 0)), setIsCreatingProject(true))}
-                inviteCollaborator={() => setIsInvitingCollaborator(true)}/>
+                inviteCollaborator={() => setIsInvitingCollaborator(true)}
+                leaveWorkspace={leaveWorkspace}
+            />
 
             <div className={style.group} style={{marginTop: '24px', marginBottom: '0'}}>
                 <SidebarPage router={router} text="Issue Board" icon={iconBoard.src}
@@ -403,7 +421,7 @@ function Sidebar({navigate, setProjects, inviteCollaborator}: {
 
 }
 
-function WorkspaceButton(props: { createProject(): void, inviteCollaborator(): void }) {
+function WorkspaceButton(props: { createProject(): void, inviteCollaborator(): void, leaveWorkspace(): void }) {
     const [isExpanded, setExpanded] = useState(false);
     const router = useRouter();
     const {workspaces, workspace: current} = useContext(AppContext);
@@ -432,16 +450,21 @@ function WorkspaceButton(props: { createProject(): void, inviteCollaborator(): v
                           onClick={() => (props.createProject(), setExpanded(false))}>Create Project</MenuItem>
                 <MenuItem icon={iconAddMember.src} className={style.item}
                           onClick={() => (props.inviteCollaborator(), setExpanded(false))}>Manage Members</MenuItem>
-                <MenuItem icon={iconRename.src} className={style.item} iconSize={["16px", "16px"]}>Change Icon</MenuItem>
-                <MenuItem icon={iconRename.src} className={style.item} iconSize={["16px", "16px"]}>Rename Workspace</MenuItem>
-                <hr />
-                <MenuItem icon={iconLeave.src} className={style.item} iconSize={["16px", "16px"]}>Leave Workspace</MenuItem>
-                <MenuItem icon={iconDelete.src} className={style.item} iconSize={["16px", "16px"]}>Delete Workspace</MenuItem>
+                <MenuItem icon={iconRename.src} className={style.item} iconSize={["16px", "16px"]}>Change
+                    Icon</MenuItem>
+                <MenuItem icon={iconRename.src} className={style.item} iconSize={["16px", "16px"]}>Rename
+                    Workspace</MenuItem>
+                <hr/>
+                <MenuItem icon={iconLeave.src} className={style.item}
+                          onClick={() => (props.leaveWorkspace(), setExpanded(false))} iconSize={["16px", "16px"]}>Leave
+                    Workspace</MenuItem>
+                <MenuItem icon={iconDelete.src} className={style.item} iconSize={["16px", "16px"]}>Delete
+                    Workspace</MenuItem>
                 <hr/>
                 <section>
                     {workspaces.map(workspace => <div key={workspace.weak_id}
-                                                                                                 className={`${style.workspace} ${current.weak_id === workspace.weak_id ? style.active : ''}`}
-                                                                                                 onClick={() => setWorkspace(workspace.weak_id)}>
+                                                      className={`${style.workspace} ${current.weak_id === workspace.weak_id ? style.active : ''}`}
+                                                      onClick={() => setWorkspace(workspace.weak_id)}>
                         <img src={"https://dercraft.net/img/logo.webp"}/>
                         <div>
                             <p>{workspace.name}</p>
