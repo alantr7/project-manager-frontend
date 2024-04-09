@@ -115,7 +115,15 @@ export default function App({pageProps, Component}: AppProps) {
         setLoadingText("Loading workspaces");
 
         function loadWorkspace(workspaces: Workspace[]) {
-            setWorkspace(workspaces.find(w => w.weak_id === workspaceId) || {weak_id: "", name: "Loading"});
+            // Check if user has access to the workspace
+            const workspace = workspaces.find(w => w.weak_id === workspaceId);
+            if (workspace === undefined) {
+                // TODO: Redirect users to a "no access or workspace does not exist" page
+                router.push('/');
+                return;
+            }
+
+            setWorkspace(workspace || {weak_id: "", name: "Loading"});
             setProjectsLoaded(false);
 
             setLoadingProgress(30);
@@ -128,7 +136,7 @@ export default function App({pageProps, Component}: AppProps) {
             }
 
             setLoadingText(attempt === 1 ? 'Loading projects' : `Loading projects (${attempt})`);
-            axios.get<Group[]>(`/api/v1/workspaces/${workspaceId}/projects?group=true`).then(result => {
+            api.get<Group[]>(`/v1/workspaces/${workspaceId}/projects?group=true`).then(result => {
                 setGroups(result.data);
                 setProjects(result.data.map(group => group.projects).flat());
                 setProjectsLoaded(true);
@@ -142,7 +150,9 @@ export default function App({pageProps, Component}: AppProps) {
 
                 setLatestWorkspace(workspaceId);
             }).catch(err => {
-                setAttempt(att => att + 1);
+                setTimeout(() => {
+                    setAttempt(att => att + 1);
+                }, 5000);
             });
         }
 
