@@ -150,9 +150,7 @@ export default function App({pageProps, Component}: AppProps) {
 
                 setLatestWorkspace(workspaceId);
             }).catch(err => {
-                setTimeout(() => {
-                    setAttempt(att => att + 1);
-                }, 5000);
+                setTimeout(() => setAttempt(att => att + 1), 5000);
             });
         }
 
@@ -171,8 +169,6 @@ export default function App({pageProps, Component}: AppProps) {
             });
         }
     }, [user.isLoggedIn, attempt, workspaceId]);
-    // isProjectsContextLoading = false;
-    // }
 
     useEffect(() => {
 
