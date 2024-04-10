@@ -12,7 +12,11 @@ interface FilterSearchPopupProps<T> {
 
     getNameFrom(data?: T): string;
 
-    apply(data: T[]): void;
+    /**
+     * Apply the selected items
+     * @param data Selected items or undefined if the filter is removed
+     */
+    apply(data?: T[]): void;
 }
 
 export default function FilterSearchPopup<T>(props: FilterSearchPopupProps<any>) {
@@ -73,7 +77,7 @@ export default function FilterSearchPopup<T>(props: FilterSearchPopupProps<any>)
             </div>
             <div className={style.actionButtons}>
                 <button className={style.apply} onClick={() => props.apply(Object.keys(selected))}>Apply</button>
-                <button className={style.reset}>Cancel</button>
+                <button className={style.reset} onClick={() => props.apply(undefined)}>Cancel</button>
             </div>
         </div>
     </div>
