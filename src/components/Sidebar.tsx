@@ -458,7 +458,7 @@ function WorkspaceButton(props: { createProject(): void, inviteCollaborator(): v
                 <MenuItem icon={iconLeave.src} className={style.item}
                           onClick={() => (props.leaveWorkspace(), setExpanded(false))} iconSize={["16px", "16px"]}>Leave
                     Workspace</MenuItem>
-                <MenuItem icon={iconDelete.src} className={style.item} iconSize={["16px", "16px"]}>Delete
+                <MenuItem icon={iconDelete.src} className={`${style.item} ${style.delete}`} iconSize={["16px", "16px"]}>Delete
                     Workspace</MenuItem>
                 <hr/>
                 <section>

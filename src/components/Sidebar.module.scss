@@ -373,6 +373,10 @@
       top: 4px !important;
       left: 24px !important;
     }
+
+    &.delete {
+      color: darkred;
+    }
   }
 
   hr {
