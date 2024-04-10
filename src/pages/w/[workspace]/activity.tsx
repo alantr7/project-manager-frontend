@@ -1,6 +1,6 @@
 import {useFetch} from "@/hooks/useFetch";
 import {LogEntry, LogEntryAction} from "@/types/LogEntry";
-import {ChangeEvent, useEffect, useRef, useState} from "react"
+import {ChangeEvent, useContext, useEffect, useRef, useState} from "react"
 import {api} from "../../_app";
 import {formatLogEntryMessage} from "@/utils/formatLogEntry";
 import style from './activity.module.scss';
@@ -13,6 +13,8 @@ import Navbar from "@/components/navbar/Navbar";
 import iconIssue from '../../../../public/icon-issues.png';
 import iconBuild from '../../../../public/icon-builds.png';
 import FilterSearchPopup from "@/components/FilterSearchPopup";
+import {User} from "@/types/User";
+import {AppContext} from "@/contexts/ProjectsContext";
 
 interface LogGroup {
     label: string,
@@ -25,9 +27,12 @@ export default function Activity() {
     const [afterDateFilter, setAfterDateFilter] = useState<string>();
     const [logs, setLogs] = useState<LogEntry[]>([]);
     const [groups, setGroups] = useState<LogGroup[]>([]);
+    const [authors, setAuthors] = useState<User[]>([]);
 
     const [isPickingDate, setIsPickingDate] = useState<string | undefined>();
     const [isSelectingAuthors, setIsSelectingAuthors] = useState(false);
+
+    const workspace = useContext(AppContext).workspace;
 
     const logFetch = useFetch(api, axios => axios.get(createURL(`/v1/logs`, {
         after: afterDateFilter && new Date(afterDateFilter).getTime(),
@@ -99,7 +104,13 @@ export default function Activity() {
                 </div>
             </section>
             {isPickingDate && <Calendar onBlur={() => setIsPickingDate(undefined)} onDatePick={handleDatePick}/>}
-            {isSelectingAuthors && <FilterSearchPopup />}
+            {isSelectingAuthors && <FilterSearchPopup<User>
+                apply={setAuthors}
+                getDataFromFetch={result => result.data}
+                getIdFrom={author => author.id}
+                getNameFrom={author => author.name}
+                fetch={query => api.get(`/v1/workspaces/${workspace.weak_id}/projects?q=${query}`)}
+            />}
         </div>
     </div>
 }

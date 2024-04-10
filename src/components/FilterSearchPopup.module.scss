@@ -35,8 +35,46 @@
             margin: 0 4px;
             cursor: pointer;
             border-radius: 6px;
+            user-select: none;
             &:hover {
                 background-color: rgba(black, 0.03);
+            }
+        }
+
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .actionButtons {
+        margin-top: 4px;
+        padding: 4px 8px;
+
+        button {
+            display: block;
+            width: 100%;
+            font-family: "Rubik", sans-serif;
+            font-size: 16px;
+            padding: 6px 0;
+            margin-bottom: 4px;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button.apply {
+            background-color: #EFF3FF;
+            color: #1F3B4D;
+
+            &:hover {
+                background-color: #e9efff;
+            }
+        }
+        button.reset {
+            background-color: #F5F5F5;
+            color: #3D3D3D;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .05);
             }
         }
     }
