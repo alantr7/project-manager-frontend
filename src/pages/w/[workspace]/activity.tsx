@@ -12,6 +12,7 @@ import {Calendar} from "@/components/Calendar";
 import Navbar from "@/components/navbar/Navbar";
 import iconIssue from '../../../../public/icon-issues.png';
 import iconBuild from '../../../../public/icon-builds.png';
+import FilterSearchPopup from "@/components/FilterSearchPopup";
 
 interface LogGroup {
     label: string,
@@ -26,6 +27,7 @@ export default function Activity() {
     const [groups, setGroups] = useState<LogGroup[]>([]);
 
     const [isPickingDate, setIsPickingDate] = useState<string | undefined>();
+    const [isSelectingAuthors, setIsSelectingAuthors] = useState(false);
 
     const logFetch = useFetch(api, axios => axios.get(createURL(`/v1/logs`, {
         after: afterDateFilter && new Date(afterDateFilter).getTime(),
@@ -75,7 +77,7 @@ export default function Activity() {
                 <div className={style.filters}>
                     <FilterDropdown options={["ALL", "CREATE_BUILD", "OPEN_ISSUE", "CLOSE_ISSUE"]}
                                     onSelect={handleActionChange} text="Action" marginRight={6}></FilterDropdown>
-                    <FilterDropdown options={[""]} text="Author" marginRight={6} disabled></FilterDropdown>
+                    <button onClick={() => setIsSelectingAuthors(true)}>Author</button>
                     <FilterDropdown onDropdownRequest={() => setIsPickingDate("date_from")}
                                     text={afterDateFilter ? `From: ${afterDateFilter}` : "Date From"}
                                     defaultValue={afterDateFilter} marginRight={6}></FilterDropdown>
@@ -97,6 +99,7 @@ export default function Activity() {
                 </div>
             </section>
             {isPickingDate && <Calendar onBlur={() => setIsPickingDate(undefined)} onDatePick={handleDatePick}/>}
+            {isSelectingAuthors && <FilterSearchPopup />}
         </div>
     </div>
 }

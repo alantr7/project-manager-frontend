@@ -1,0 +1,43 @@
+.popup {
+    position: absolute;
+    top: 140px;
+    left: 164px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(black, 25%);
+    width: 230px;
+    z-index: 2;
+    font-family: "Rubik", sans-serif;
+    padding: 6px 4px;
+
+    hr {
+        margin: 6px 4px;
+        border: 0;
+        border-bottom: 1px solid rgba(black, 0.1);
+    }
+    input[type="text"] {
+        margin: 4px 8px;
+        display: block;
+        width: calc(100% - 16px);
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        background-color: rgba(black, 0.05);
+        border: 0;
+        border-radius: 4px;
+        padding: 4px 6px;
+        outline: 0;
+    }
+
+    .container {
+        .item {
+            padding: 5px 8px;
+            margin: 0 4px;
+            cursor: pointer;
+            border-radius: 6px;
+            &:hover {
+                background-color: rgba(black, 0.03);
+            }
+        }
+    }
+}
